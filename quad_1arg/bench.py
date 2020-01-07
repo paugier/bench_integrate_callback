@@ -5,9 +5,9 @@ from scipy import LowLevelCallable
 
 import numba
 from transonic.util import timeit_verbose as timeit
-from transonic import jit, boost
+from transonic import jit, boost, wait_for_all_extensions
 
-from _pythran import integrand as integrand_capsule
+from util import integrand as integrand_capsule
 
 
 def integrand(x):
@@ -15,6 +15,9 @@ def integrand(x):
 
 
 integrand_transonic_jit = jit(native=True)(integrand)
+
+integrand_transonic_jit(0.)
+wait_for_all_extensions()
 
 # transonic bug (should work)!
 # integrand_transonic_boost = boost(integrand)

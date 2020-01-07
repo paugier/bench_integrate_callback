@@ -23,4 +23,4 @@ def rober(t, u):
 
 u0 = [1.0, 0.0, 0.0]
 tspan = (0.0, 1e5)
-tiv("solve_ivp(rober, tspan, u0, t_eval=[0.0, 1e5])", globals=locals())
+tiv("solve_ivp(rober, tspan, u0, t_eval=tspan)", globals=locals())
