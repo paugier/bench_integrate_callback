@@ -1,11 +1,12 @@
 """
 pypy3 purepython_callback.py
-2.05e-03 s
+1.55e-03 s
 
 python purepython_callback.py
-6.04e-02 s
+3.01e-02 s
 
-PyPy is 30 times faster...
+- PyPy is 19 times faster than CPython.
+- PyPy is 1.6 times faster than Julia.
 
 """
 
@@ -33,4 +34,4 @@ def call_function(func):
 
 call_function(rober)
 
-tiv("call_function(rober)", globals=locals())
+tiv("call_function(rober)", globals=locals(), total_duration=10)

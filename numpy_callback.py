@@ -1,14 +1,11 @@
 """
 pypy3 numpy_callback.py
-1.12e-01 s
+6.59e-02 s
 
 python numpy_callback.py
-6.00e-02 s
+3.23e-02 s
 
-Same time than purepython_callback.py with CPython but 54 times slower with
-PyPy!
-
-PyPy is 1.87 times slower than CPython...
+PyPy and CPython are super slow...
 
 """
 
@@ -38,4 +35,4 @@ def call_function(func):
 
 call_function(rober)
 
-tiv("call_function(rober)", globals=locals())
+tiv("call_function(rober)", globals=locals(), total_duration=10)
