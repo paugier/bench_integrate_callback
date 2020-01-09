@@ -1,3 +1,9 @@
+"""
+Julia seems 1.3 to 3 times faster than the solution with Pythran capsule
+(depending on the kernel).
+
+"""
+
 import numpy as np
 from scipy.integrate import quad
 
@@ -11,12 +17,12 @@ from util import integrand as integrand_capsule
 
 
 def integrand(x):
-    return 10.0 * x * np.cos(x)
+    return np.exp(10.0 * x * np.cos(x))
 
 
 integrand_transonic_jit = jit(native=True)(integrand)
 
-integrand_transonic_jit(0.)
+integrand_transonic_jit(0.0)
 wait_for_all_extensions()
 
 # transonic bug (should work)!
@@ -25,7 +31,7 @@ wait_for_all_extensions()
 
 @boost
 def integrand_transonic_boost(x: float):
-    return 10.0 * x * np.cos(x)
+    return np.exp(10.0 * x * np.cos(x))
 
 
 integrand_numba = numba.njit(integrand)
@@ -45,6 +51,12 @@ methods = {
 norm = None
 for name, key in methods.items():
     print(name)
-    result = timeit(f"quad({key}, 0, 10)", globals=locals(), norm=norm)
+    result = timeit(
+        f"quad({key}, 0, 10, epsabs=1.49e-08, epsrel=1.49e-08)",
+        globals=locals(),
+        total_duration=8,
+        norm=norm,
+    )
+    print(f"{result * 1e6:.2f} μs")
     if norm is None:
         norm = result
