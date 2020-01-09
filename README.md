@@ -1,12 +1,20 @@
 # Benchmark Python callbacks small functions for integration
 
-Integration and ODEs (scipy.integrate)
+We considere here cases of integration and ODEs for which tiny Python functions
+are called a very large number of times. It is one of the problem for which
+CPython is not good at all in terms of performance and for which there is in
+some cases no good solution.
 
-https://docs.scipy.org/doc/scipy/reference/integrate.html
+Since these cases are so particular, they are not representative of the
+efficiency of most scientific Python programs and libraries.
 
-https://docs.scipy.org/doc/scipy/reference/tutorial/integrate.html#faster-integration-using-low-level-callback-functions
+See:
 
-https://github.com/JuliaDiffEq/SciPyDiffEq.jl
+- scipy.integrate, https://docs.scipy.org/doc/scipy/reference/integrate.html
+
+- https://docs.scipy.org/doc/scipy/reference/tutorial/integrate.html#faster-integration-using-low-level-callback-functions
+
+- https://github.com/JuliaDiffEq/SciPyDiffEq.jl
 
 ## Silly "callback tiny function"
 
